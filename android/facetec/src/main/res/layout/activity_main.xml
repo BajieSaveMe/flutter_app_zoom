@@ -1,0 +1,182 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zoomSampleActivity"
+        tools:context=".ZoomSampleActivity">
+
+        <RelativeLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/centeredContent"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:gravity="center"
+                android:layout_centerInParent="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity=""
+                    android:layout_weight="8"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/zoomLogo"
+                        android:layout_width="177dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/zoom_logo"
+                        android:gravity="center"
+                        android:layout_marginBottom="15dp"/>
+
+                    <Button
+                        android:id="@+id/livenessCheckButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onLivenessCheckPressed"
+                        android:text="@string/liveness_check"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/enrollButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onEnrollUserPressed"
+                        android:text="@string/enroll_simple"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/authButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onAuthenticateUserPressed"
+                        android:text="@string/auth_simple"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/identityCheckButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onPhotoIDMatchPressed"
+                        android:text="@string/identity_check"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/auditTrailImagesButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onViewAuditTrailPressed"
+                        android:text="@string/audit_trail"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/settingsButton"
+                        style="?android:attr/button"
+                        android:layout_width="220dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/simple_button_bg"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif"
+                        android:onClick="onThemeSelectionPressed"
+                        android:text="@string/design_showcase"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/simple_button_text_state"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/centeredContent"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/statusLabel"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#417FB2"
+                    android:textSize="12dp"
+                    android:inputType="textMultiLine|textNoSuggestions"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/facetecLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/facetec_logo"
+                    tools:visibility="visible" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/themeTransitionImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleX="1.1"
+            android:scaleY="1.1"
+            android:scaleType="centerCrop"
+            android:alpha="0"/>
+
+    </RelativeLayout>
+</layout>
