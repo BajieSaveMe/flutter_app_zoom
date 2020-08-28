@@ -26,6 +26,7 @@ public class FacetecPlugin implements MethodChannel.MethodCallHandler {
 
     public FacetecPlugin(Activity activity) {
         this.activity = activity;
+        Log.v(TAG, "========init called!");
         ZoomSDK.initialize(
                 activity,
                 ZoomGlobalState.DeviceLicenseKeyIdentifier,

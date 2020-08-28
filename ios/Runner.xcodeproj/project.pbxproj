@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,17 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		FC1D505A24F9279300DD648F /* ZoomGlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D505924F9279300DD648F /* ZoomGlobalState.swift */; };
+		FC1D505E24F9283300DD648F /* NetworkingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D505D24F9283300DD648F /* NetworkingHelper.swift */; };
+		FC1D506024F9289400DD648F /* LivenessCheckProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D505F24F9289400DD648F /* LivenessCheckProcessor.swift */; };
+		FC1D506224F928A000DD648F /* EnrollmentProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D506124F928A000DD648F /* EnrollmentProcessor.swift */; };
+		FC1D506424F928AC00DD648F /* AuthenticateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D506324F928AC00DD648F /* AuthenticateProcessor.swift */; };
+		FC1D506624F928B500DD648F /* PhotoIDMatchProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D506524F928B500DD648F /* PhotoIDMatchProcessor.swift */; };
+		FC1D506824F928C100DD648F /* ProcesingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D506724F928C100DD648F /* ProcesingDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
+		FC1D506D24F92E3C00DD648F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -42,6 +49,13 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC1D505924F9279300DD648F /* ZoomGlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomGlobalState.swift; sourceTree = "<group>"; };
+		FC1D505D24F9283300DD648F /* NetworkingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelper.swift; sourceTree = "<group>"; };
+		FC1D505F24F9289400DD648F /* LivenessCheckProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessCheckProcessor.swift; sourceTree = "<group>"; };
+		FC1D506124F928A000DD648F /* EnrollmentProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentProcessor.swift; sourceTree = "<group>"; };
+		FC1D506324F928AC00DD648F /* AuthenticateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateProcessor.swift; sourceTree = "<group>"; };
+		FC1D506524F928B500DD648F /* PhotoIDMatchProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIDMatchProcessor.swift; sourceTree = "<group>"; };
+		FC1D506724F928C100DD648F /* ProcesingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcesingDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +100,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				FC1D505B24F9280B00DD648F /* ZoomProcessors */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -106,6 +121,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FC1D505B24F9280B00DD648F /* ZoomProcessors */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D505924F9279300DD648F /* ZoomGlobalState.swift */,
+				FC1D505C24F9282B00DD648F /* Helpers */,
+				FC1D506124F928A000DD648F /* EnrollmentProcessor.swift */,
+				FC1D505F24F9289400DD648F /* LivenessCheckProcessor.swift */,
+				FC1D506324F928AC00DD648F /* AuthenticateProcessor.swift */,
+				FC1D506524F928B500DD648F /* PhotoIDMatchProcessor.swift */,
+				FC1D506724F928C100DD648F /* ProcesingDelegate.swift */,
+			);
+			name = ZoomProcessors;
+			sourceTree = "<group>";
+		};
+		FC1D505C24F9282B00DD648F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D505D24F9283300DD648F /* NetworkingHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,8 +154,8 @@
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
+				FC1D506D24F92E3C00DD648F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,8 +249,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC1D506424F928AC00DD648F /* AuthenticateProcessor.swift in Sources */,
+				FC1D506024F9289400DD648F /* LivenessCheckProcessor.swift in Sources */,
+				FC1D506624F928B500DD648F /* PhotoIDMatchProcessor.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				FC1D505E24F9283300DD648F /* NetworkingHelper.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				FC1D506224F928A000DD648F /* EnrollmentProcessor.swift in Sources */,
+				FC1D505A24F9279300DD648F /* ZoomGlobalState.swift in Sources */,
+				FC1D506824F928C100DD648F /* ProcesingDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,13 +341,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8WF8BJSYNB;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -418,7 +467,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -431,13 +481,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8WF8BJSYNB;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -458,13 +513,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8WF8BJSYNB;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
