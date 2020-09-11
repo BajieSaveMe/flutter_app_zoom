@@ -11,6 +11,7 @@ import com.facetec.zoom.sdk.ZoomSDK;
 
 public class ThemeHelpers {
 
+    //Pseudo-Fullscreen
     public static void setAppTheme(String theme) {
         ZoomGlobalState.currentCustomization = getCustomizationForTheme(theme);
         ZoomCustomization currentLowLightCustomization = getLowLightCustomizationForTheme(theme);

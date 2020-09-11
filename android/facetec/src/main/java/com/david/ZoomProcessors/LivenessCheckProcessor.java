@@ -15,9 +15,11 @@ import org.json.JSONObject;
 public class LivenessCheckProcessor extends Processor implements ZoomFaceMapProcessor {
     ZoomFaceMapResultCallback zoomFaceMapResultCallback;
     ZoomSessionResult latestZoomSessionResult;
+    SessionTokenErrorCallback sessionCallback;
     private boolean _isSuccess = false;
 
     public LivenessCheckProcessor(final Context context, final SessionTokenErrorCallback sessionTokenErrorCallback) {
+        this.sessionCallback = sessionTokenErrorCallback;
         NetworkingHelpers.getSessionToken(new NetworkingHelpers.SessionTokenCallback() {
             @Override
             public void onResponse(String sessionToken) {
@@ -27,7 +29,7 @@ public class LivenessCheckProcessor extends Processor implements ZoomFaceMapProc
 
             @Override
             public void onError() {
-                sessionTokenErrorCallback.onError();
+                sessionCallback.onError();
             }
         });
     }
@@ -62,6 +64,7 @@ public class LivenessCheckProcessor extends Processor implements ZoomFaceMapProc
                     _isSuccess = true;
                     ZoomCustomization.overrideResultScreenSuccessMessage = "Liveness\nConfirmed";
                     zoomFaceMapResultCallback.succeed();
+                    sessionCallback.onSuccess("LivenessCheck");
                 } else if (nextStep == UXNextStep.Retry) {
                     zoomFaceMapResultCallback.retry();
                 } else {

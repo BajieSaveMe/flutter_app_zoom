@@ -20,12 +20,14 @@ public class PhotoIDMatchProcessor extends Processor implements ZoomFaceMapProce
 
     ZoomIDScanResultCallback zoomIDScanResultCallback;
     ZoomIDScanResult latestZoomIDScanResult;
+    SessionTokenErrorCallback sessionCallback;
     private boolean _isSuccess = false;
 
     public PhotoIDMatchProcessor(final Context context, final SessionTokenErrorCallback sessionTokenErrorCallback) {
         // For demonstration purposes, generate a new uuid for each Photo ID Match.  Enroll this in the DB and compare against the ID after it is scanned.
         ZoomGlobalState.randomUsername = "android_sample_app_" + randomUUID();
         ZoomGlobalState.isRandomUsernameEnrolled = false;
+        sessionCallback = sessionTokenErrorCallback;
 
         NetworkingHelpers.getSessionToken(new NetworkingHelpers.SessionTokenCallback() {
             @Override
@@ -36,7 +38,7 @@ public class PhotoIDMatchProcessor extends Processor implements ZoomFaceMapProce
 
             @Override
             public void onError() {
-                sessionTokenErrorCallback.onError();
+                sessionCallback.onError();
             }
         });
     }
@@ -70,11 +72,10 @@ public class PhotoIDMatchProcessor extends Processor implements ZoomFaceMapProce
                     // Dynamically set the success message.
                     ZoomCustomization.overrideResultScreenSuccessMessage = "Liveness\nConfirmed";
                     zoomFaceMapResultCallback.succeed();
-                }
-                else if (nextStep == UXNextStep.Retry) {
+                    sessionCallback.onSuccess("PhotoIDMatch");
+                } else if (nextStep == UXNextStep.Retry) {
                     zoomFaceMapResultCallback.retry();
-                }
-                else {
+                } else {
                     zoomFaceMapResultCallback.cancel();
                 }
             }
@@ -92,19 +93,19 @@ public class PhotoIDMatchProcessor extends Processor implements ZoomFaceMapProce
         NetworkingHelpers.cancelPendingRequests();
 
         // cancellation, timeout, etc.
-        if(zoomIDScanResult.getZoomIDScanStatus() != ZoomIDScanStatus.SUCCESS) {
+        if (zoomIDScanResult.getZoomIDScanStatus() != ZoomIDScanStatus.SUCCESS) {
             zoomIDScanResultCallback.cancel();
             this.zoomIDScanResultCallback = null;
             return;
         }
 
-        if(zoomIDScanResult.getIDScanMetrics() == null) {
+        if (zoomIDScanResult.getIDScanMetrics() == null) {
             zoomIDScanResultCallback.cancel();
             this.zoomIDScanResultCallback = null;
             return;
         }
 
-        if(zoomIDScanResult.getIDScanMetrics().getIDScan() == null) {
+        if (zoomIDScanResult.getIDScanMetrics().getIDScan() == null) {
             zoomIDScanResultCallback.cancel();
             this.zoomIDScanResultCallback = null;
             return;
@@ -120,14 +121,11 @@ public class PhotoIDMatchProcessor extends Processor implements ZoomFaceMapProce
                     // Dynamically set the success message.
                     ZoomCustomization.overrideResultScreenSuccessMessage = "Your 3D Face\nMatched Your ID";
                     zoomIDScanResultCallback.succeed();
-                }
-                else if (nextStep == IDScanUXNextStep.Retry) {
+                } else if (nextStep == IDScanUXNextStep.Retry) {
                     zoomIDScanResultCallback.retry(ZoomIDScanRetryMode.FRONT);
-                }
-                else if (nextStep == IDScanUXNextStep.RetryInvalidId) {
+                } else if (nextStep == IDScanUXNextStep.RetryInvalidId) {
                     zoomIDScanResultCallback.retry(ZoomIDScanRetryMode.FRONT, "Photo ID\nNot Fully Visible");
-                }
-                else {
+                } else {
                     zoomIDScanResultCallback.cancel();
                 }
             }

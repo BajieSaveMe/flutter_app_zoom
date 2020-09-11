@@ -18,7 +18,23 @@ class _FacetecTestState extends State<FacetecTest> {
           children: <Widget>[
             FlatButton(
                 onPressed: () {
-                  FaceManager.livenessCheck();
+                  FaceManager.livenessCheck().then((value) {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Scaffold(
+                            backgroundColor: Colors.transparent,
+                            body: Center(
+                              child: Container(
+                                color: Colors.white,
+                                width: 200,
+                                height: 200,
+                                child: Text(value),
+                              ),
+                            ),
+                          );
+                        });
+                  });
                 },
                 child: Text("Liveness Check")),
             FlatButton(

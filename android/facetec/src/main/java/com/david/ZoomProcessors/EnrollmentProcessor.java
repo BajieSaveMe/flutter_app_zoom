@@ -22,12 +22,14 @@ import static java.util.UUID.randomUUID;
 public class EnrollmentProcessor extends Processor implements ZoomFaceMapProcessor {
     ZoomFaceMapResultCallback zoomFaceMapResultCallback;
     ZoomSessionResult latestZoomSessionResult;
+    SessionTokenErrorCallback sessionCallback;
     private boolean _isSuccess = false;
 
     public EnrollmentProcessor(final Context context, final SessionTokenErrorCallback sessionTokenErrorCallback) {
         // For demonstration purposes, generate a new uuid for each user and flag as successful in onZoomSessionComplete.  Reset enrollment status each enrollment attempt.
         ZoomGlobalState.randomUsername = "android_sample_app_" + randomUUID();
         ZoomGlobalState.isRandomUsernameEnrolled = false;
+        sessionCallback = sessionTokenErrorCallback;
 
         NetworkingHelpers.getSessionToken(new NetworkingHelpers.SessionTokenCallback() {
             @Override
@@ -38,7 +40,7 @@ public class EnrollmentProcessor extends Processor implements ZoomFaceMapProcess
 
             @Override
             public void onError() {
-                sessionTokenErrorCallback.onError();
+                sessionCallback.onError();
             }
         });
     }
@@ -75,11 +77,10 @@ public class EnrollmentProcessor extends Processor implements ZoomFaceMapProcess
                     ZoomCustomization.overrideResultScreenSuccessMessage = "Enrollment\nSuccessful";
                     ZoomGlobalState.isRandomUsernameEnrolled = true;
                     zoomFaceMapResultCallback.succeed();
-                }
-                else if (nextStep == UXNextStep.Retry) {
+                    sessionCallback.onSuccess("Enrollment");
+                } else if (nextStep == UXNextStep.Retry) {
                     zoomFaceMapResultCallback.retry();
-                }
-                else {
+                } else {
                     zoomFaceMapResultCallback.cancel();
                 }
             }

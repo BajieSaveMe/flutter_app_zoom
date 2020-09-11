@@ -20,9 +20,11 @@ import org.json.JSONObject;
 public class AuthenticateProcessor extends Processor implements ZoomFaceMapProcessor {
     ZoomFaceMapResultCallback zoomFaceMapResultCallback;
     ZoomSessionResult latestZoomSessionResult;
+    SessionTokenErrorCallback sessionCallback;
     private boolean _isSuccess = false;
 
     public AuthenticateProcessor(final Context context, final SessionTokenErrorCallback sessionTokenErrorCallback) {
+        sessionCallback = sessionTokenErrorCallback;
         NetworkingHelpers.getSessionToken(new NetworkingHelpers.SessionTokenCallback() {
             @Override
             public void onResponse(String sessionToken) {
@@ -32,7 +34,7 @@ public class AuthenticateProcessor extends Processor implements ZoomFaceMapProce
 
             @Override
             public void onError() {
-                sessionTokenErrorCallback.onError();
+                sessionCallback.onError();
             }
         });
     }
@@ -68,6 +70,7 @@ public class AuthenticateProcessor extends Processor implements ZoomFaceMapProce
                     // Dynamically set the success message.
                     ZoomCustomization.overrideResultScreenSuccessMessage = "Authenticated";
                     zoomFaceMapResultCallback.succeed();
+                    sessionCallback.onSuccess("Authenticate");
                 }
                 else if (nextStep == UXNextStep.Retry) {
                     zoomFaceMapResultCallback.retry();

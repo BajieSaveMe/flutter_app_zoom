@@ -5,6 +5,7 @@ public abstract class Processor {
 
     public interface SessionTokenErrorCallback {
         void onError();
+        <T> void onSuccess(T t);
     }
 }
 

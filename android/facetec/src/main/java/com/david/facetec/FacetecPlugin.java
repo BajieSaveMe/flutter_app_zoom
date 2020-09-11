@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.david.ZoomProcessors.Processor;
+import com.david.ZoomProcessors.ThemeHelpers;
 import com.david.ZoomProcessors.ZoomGlobalState;
 import com.facetec.zoom.sdk.ZoomSDK;
 
@@ -36,6 +37,7 @@ public class FacetecPlugin implements MethodChannel.MethodCallHandler {
                     public void onCompletion(final boolean successful) {
                         if (successful) {
                             isInit = true;
+                            ThemeHelpers.setAppTheme("Pseudo-Fullscreen");
                             Log.e(TAG, "===============init success");
                         } else {
                             Log.e(TAG, "===============init fail");
@@ -103,6 +105,16 @@ public class FacetecPlugin implements MethodChannel.MethodCallHandler {
                 @Override
                 public void run() {
                     result.error("-1", "error", null);
+                }
+            });
+        }
+
+        @Override
+        public <T> void onSuccess(T t) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    result.success(t);
                 }
             });
         }
