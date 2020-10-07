@@ -65,7 +65,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.squareup.okhttp3:okhttp:4.8.0'
     implementation 'com.squareup.okio:okio:2.7.0'
-    implementation(name: 'zoom-authentication-8.12.3', ext: 'aar')
+    implementation(name: 'facetec-sdk-9.0.1', ext: 'aar')
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
